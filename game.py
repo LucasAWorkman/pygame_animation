@@ -1,4 +1,4 @@
-import pygame
+import pygame, random, time
 
 def main():
     pygame.init()
@@ -44,17 +44,21 @@ def main():
                     move = not move
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_x:
-                    cardinal_x += 5
+                    move = not move
 
-        #modify cardinal value
-        cardinal_x += 5
         if move:
-            cardinal_y += 5
+            cardinal_y += random.randint(-100,100)
+            cardinal_x += random.randint(-100, 100)
+            time.sleep(0.1)
         #check boundaries
         if cardinal_x > screen.get_width():
-            cardinal_x = 0
+            cardinal_x = 320
         if cardinal_y > screen.get_width():
-            cardinal_y = 10
+            cardinal_y = 240
+        if cardinal_y < 0:
+            cardinal_y = 240
+        if cardinal_x < 0:
+            cardinal_x = 320
         
 
         #Refresh screen
